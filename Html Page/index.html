@@ -1,0 +1,54 @@
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+<script type=text/javascript>
+    w();
+    function w() {
+    //alert("kkk");
+    //var form_data = new FormData($('#aws-mqtt')[0]);
+    $.ajax({
+        
+    url: 'https://9ai4kmn4q8.execute-api.us-east-1.amazonaws.com/DEP/datareceive',
+    headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+
+    
+        type: 'POST',
+        
+    data: '',
+    success: function(data) {
+            //alert(JSON.stringify(data));
+            //$('body').html=text;
+            //var RaspberryId = parseInt(data.body.Raspberry_Id)
+            document.getElementById('r').value=JSON.stringify(parseInt(data.body.Raspberry_Id));
+            document.getElementById('d').value=JSON.stringify(parseInt(data.body.Received_Data)+ " Cm");
+
+            //document.getElementById('im').src=data;
+            setTimeout(w, 200);
+            //document.getElementById('contact_Gender').value=data[1];
+            //document.getElementById('contact_Aadhar no').value=data[2];
+            //document.getElementById('contact_Mobile no').value=data[3];
+            //document.getElementById('contact_dob').value=data[4];
+            
+    },
+    });
+}
+</script>
+<html>
+<head>
+<title>MEASuREMENT</title>
+<!-- <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.19.min.js"></script> -->
+<!-- <script src="js/raven-table-dashboard.js"></script> -->
+</head>
+<body bgcolor='lightblue'>
+    <h1 align='center'>WATER LEVEL MANAGEMENT</h1>
+    <div class="tank-level">
+        <center><br><br>
+           Raspberry ID : &nbsp;&nbsp;&nbsp;&nbsp;<input id="r" class="number" type="text" name="time" placeholder="time" required=""> <br><br>
+           Tank Level :&nbsp;&nbsp;<input class="number" id="d" type="text" name="data" placeholder="LEVEL" required=""> <br><br>
+        </center>
+    </div>
+   <center><br><br> <button>BACK</button> </center>
+
+</body>
+</html>
